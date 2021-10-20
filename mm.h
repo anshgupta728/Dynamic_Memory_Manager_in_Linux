@@ -7,7 +7,7 @@ typedef struct pageFamily{
 typedef struct pageFamilies{
     struct pageFamilies *next;
     pageFamily vmPageFamily[0];
-}vm_page_families
+}vm_page_families;
 
 
 
