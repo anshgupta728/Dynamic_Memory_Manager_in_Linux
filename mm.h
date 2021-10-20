@@ -9,6 +9,9 @@ typedef struct pageFamilies{
     pageFamily vmPageFamily[0];
 }vm_page_families;
 
+#define MAX_FAMILIES_PER_VM_PAGE \
+   (SYSTEM_PAGE_SIZE - sizeof(vm_page_family *))
+
 
 
 
