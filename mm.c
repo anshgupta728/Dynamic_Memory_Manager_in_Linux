@@ -1,10 +1,11 @@
 #include<stdio.h>
+#include<string.h>
 #include<memory.h>
 #include<unistd.h>    //for getpagesize()
 #include<sys/mman.h>  //for mmap() and munmap()
 
-//static vm_page_for_families_t *first_vm_page_for_families = NULL;
 static size_t SYSTEM_PAGE_SIZE = 0;
+static pageFamilies *firstPage=NULL; 
 
 //Function to get size of 1 virual memory page
 void mm_init(){
@@ -31,6 +32,27 @@ void deallocateVMPage_from_kernel(void *vm_page, int units){
         printf("Error: VM Page Deallocation Failed\n");
     }  
     printf("Page DeAllocation Successful\n");
+}
+
+//Page Instantiation Algorithm
+void instantiatePage(char *struct_name, uint32_t size){
+	pageFamily *current = NULL;
+	pageFamilies *temp = NULL;
+	if(struct_size > SYSTEM_PAGE_SIZE){
+		//Limitation: We cannot allocate memory to a structure whose size is greater than the System page size
+		printf("Cannot allocate memory for %s",struct_name);
+		return;	
+	}
+	
+	if(firstPage == NULL){
+		firstPage=(pageFamilies *)allocateVMPage_from_kernel(1);
+		firstPage->next=NULL;
+		strncpy(firstPage->vmPageFamily[0].struct_name, struct_name, MM_MAX_STRUCT_NAME);
+		firstPage->vmPageFamily[0].struct_size = struct_size;
+		return;	
+	}
+	
+	
 }
 
 int main(int argc, char **argv){
