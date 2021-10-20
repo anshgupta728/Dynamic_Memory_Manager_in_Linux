@@ -51,8 +51,27 @@ void instantiatePage(char *struct_name, uint32_t size){
 		firstPage->vmPageFamily[0].struct_size = struct_size;
 		return;	
 	}
-	
-	
+	/*
+	uint32_t count=0;
+        ITERATE_PAGE_FAMILIES_BEGIN(first_vm_page_for_families, vm_page_family_curr){
+                if(strncmp(vm_page_family_curr->struct_name, struct_name, MM_MAX_STRUCT_NAME)!=0){
+                        count++;
+                        continue;
+                }
+                assert(0);
+        } ITERATE_PAGE_FAMILIES_BEGIN(first_vm_page_for_families, vm_page_family_curr);
+        
+        if(count == MAX_FAMILIES_PER_VM_PAGE){
+                vm_page_for_families *new_vm_page_for_families = (vm_page_for_families *)mm_get_vm_page_from_kernel(1);
+                new_vm_page_for_families->next = first_vm_page_for_families;
+                first_vm_page_for_families = new_vm_page_families;
+                vm_page_family_curr = &first_vm_page_for_families->vm_page_family[0];
+         }
+         
+         strncpy(vm_page_family_curr->struct_names, struct_name, MM_MAX_STRUCT_NAME);
+         vm_page_family_curr->struct_size=struct_size;
+         vm_page_family_curr->first_page=NULL;
+	*/
 }
 
 int main(int argc, char **argv){
