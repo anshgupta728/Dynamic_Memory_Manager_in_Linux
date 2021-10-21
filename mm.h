@@ -4,10 +4,10 @@
 #define __MM__
 
 typedef enum{
-
     MM_FALSE,
     MM_TRUE
 } vm_bool_t;
+
 typedef struct vm_page_family_{
 	char struct_name[MM_MAX_STRUCT_NAME]; 
 	uint32_t struct_size;
@@ -30,7 +30,6 @@ typedef struct vm_page_for_families_{
  
 #define ITERATE_PAGE_FAMILIES_END(vm_page_for_families_ptr, curr) }}
 
-
 typedef struct block_meta_data_{
 
     vm_bool_t is_free;
@@ -39,6 +38,7 @@ typedef struct block_meta_data_{
     struct block_meta_data_ *prev_block;
     struct block_meta_data_ *next_block;
 } block_meta_data_t;
+
 #define offset_of(container_structure, field_name)  \
     ((size_t)&(((container_structure *)0)->field_name))
 
@@ -55,6 +55,4 @@ typedef struct block_meta_data_{
 #define PREV_META_BLOCK(block_meta_data_ptr)    \
     (block_meta_data_ptr->prev_block)
 
-
-
-#endif /**/
+#endif 
