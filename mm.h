@@ -55,4 +55,11 @@ typedef struct block_meta_data_{
 #define PREV_META_BLOCK(block_meta_data_ptr)    \
     (block_meta_data_ptr->prev_block)
 
+#define mm_blind_blocks_for_allocation(allocated_meta_block, free_meta_block)   \
+    free_meta_block -> prev_block = allocated_meta_block; \
+    free_meta_block -> next_block = allocated_meta_block -> next_block;\
+    allocated_meta_block -> next_block = free_meta_block; \
+    if (free_meta_block -> next_block) \
+    free_meta_block -> next_block -> prev_block = free_meta_block
+
 #endif 
