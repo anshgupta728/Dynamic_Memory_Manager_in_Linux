@@ -28,4 +28,5 @@ gcc -g -c mm.c -o mm.o
 gcc -g -c gluethread/glthread.c -o gluethread/glthread.o
 
 gcc -g gluethread/glthread.o mm.o testapp.o test.exe
+
 ./test.exe
