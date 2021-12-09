@@ -21,6 +21,11 @@ typedef struct vm_page_for_families_{
 #define MAX_FAMILIES_PER_VM_PAGE 							\
     (SYSTEM_PAGE_SIZE - sizeof(vm_page_for_families_t *)/sizeof(vm_page_family_t)) 
     
+#define MARK_VM_PAGE_EMPTY(vm_page_t_ptr)                                 \
+    vm_page_t_ptr->block_meta_data.next_block = NULL;                     \
+    vm_page_t_ptr->block_meta_data.prev_block = NULL;                     \
+    vm_page_t_ptr->block_meta_data.is_free = MM_TRUE
+
 #define ITERATE_PAGE_FAMILIES_BEGIN(vm_page_for_families_ptr, curr) 		        \
 {											\
 	uint32_t count=0;								\
